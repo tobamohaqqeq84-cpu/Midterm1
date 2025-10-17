@@ -53,28 +53,29 @@ void delete_val(int value) { // this function deletes the first node with the gi
 if (!head) return; //this checks if the list is empty and skips the rest of the function if it is.
 Node* temp = head; //start from the head of the list.
 while (temp && temp->data != value) //this is a while loop that goes through the list until it finds the node with the given value.
-temp = temp->next;
-if (!temp) return;
-if (temp->prev)
-temp->prev->next = temp->next;
-else
-head = temp->next;
-if (temp->next)
-temp->next->prev = temp->prev;
-else
-tail = temp->prev;
-delete temp;
-}
-void delete_pos(int pos) {
-if (!head) {
-cout << "List is empty." << endl;
+temp = temp->next; //this moves the pointer to the next node in the list each time.
+if (!temp) return; //this chekes if the value was found n the list, if not, it will stop the funcion. 
+if (temp->prev) //this checks if there was a node before the one that was found.
+temp->prev->next = temp->next; // thsi skips the temp in the forward direction. 
+else // if there was no node before the one that was found.
+head = temp->next; // move the head to the next node.
+if (temp->next) //this checks if there was a node after the one that was found.
+temp->next->prev = temp->prev; //this skips the temp in the backward direction.
+else 
+tail = temp->prev; //if there was no node after the one that was found, move the tail to the previous node.(moves the tail backward)
+delete temp; //this deletes the node that was found.
+} // end of this function. 
+
+void delete_pos(int pos) { // this deletes the node a the specific position.(so 1 means the first node)
+if (!head) {  //This checks if the list is empty.
+cout << "List is empty." << endl; // pribts an error massage to the user.
 return;
 }
-if (pos == 1) {
-pop_front();
+if (pos == 1) { // if the position is 1, then the first node is deleted.(if we delete the first node)
+pop_front(); //use the pop_front function. (this calls the pop front function)
 return;
 }
-Node* temp = head;
+Node* temp = head; //start from the head of the list.
 for (int i = 1; i < pos; i++){
 if (!temp) {
 cout << "Position doesn't exist." << endl;

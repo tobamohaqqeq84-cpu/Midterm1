@@ -100,31 +100,31 @@ delete temp; //deletes the temp node.
 void push_back(int v) {  //this adds a new node with the given value to the end of the list.
 Node* newNode = new Node(v); //creates a new node with the given value.
 if (!tail)
-head = tail = newNode;
+head = tail = newNode; //if the list is empty, the new node becomes both head and tail.
 else {
-tail->next = newNode;
+tail->next = newNode; //links the new node to the end of the list.
 newNode->prev = tail;
 tail = newNode;
 }
 }
-void push_front(int v) {
+void push_front(int v) { //this adds a new node with the given value to the front of the list.
 Node* newNode = new Node(v);
 if (!head)
-head = tail = newNode;
+head = tail = newNode; //if the list is empty, the new node becomes both head and tail.
 else {
-newNode->next = head;
-head->prev = newNode;
+newNode->next = head; //links the new node to the front of the list.
+head->prev = newNode; //links the new node to the front of the list.
 head = newNode;
 }
 }
-void pop_front() {
+void pop_front() { //this deletes the first node in the list.
 if (!head) {
-cout << "List is empty." << endl;
+cout << "List is empty." << endl; //so if the list is empty, it will print an error message to the user. 
 return;
 }
-Node * temp = head;
+Node * temp = head; // and this will save the head node before deleting it.
 if (head->next) {
-head = head->next;
+head = head->next; // this one 
 head->prev = nullptr;
 }
 else
@@ -144,6 +144,23 @@ tail->next = nullptr;
 else
 head = tail = nullptr;
 delete temp;
+}
+void every_other_element(){
+  Node* current = head;
+  int index = 1; // start from 1
+  if (!current) {
+    cout << "List is empty." << endl;
+    return;
+  }
+  cout << "every other element: ";
+  while (current) {
+    if (index % 2 != 0) { // if the index is even
+      cout << current->data << " ";
+    }
+    current = current->next;
+    index++;
+  }
+  cout << endl;
 }
 ~DoublyLinkedList() {
 while (head) {
@@ -191,9 +208,10 @@ int main() {
 
   cout << "Reverse list: ";
   list.print_reverse();
-  list.every_other_elements();
+
+  list.every_other_element();
   
 cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid
-compiler warning
+//compiler warning
 return 0;
 }

@@ -2,17 +2,19 @@
 //Comsc 210
 //midterms 1
 
-#include <iostream>
-using namespace std;
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-class DoublyLinkedList {
-private:
-struct Node {
-int data;
-Node* prev;
-Node* next;
-Node(int val, Node* p = nullptr, Node* n = nullptr) {
-data = val;
+#include <iostream> //for input and output streams
+using namespace std; //for standard nmespace,so you dont have to use std::cout
+const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20; //constants for the minimum and maximum number of rows and columns.
+class DoublyLinkedList { //Declaring that implements a doubly linked list of integers.
+private: //This is the private section of the class.
+
+struct Node { // this struct is what each node in the list will look like.
+int data;  // the number that the node will hold.
+Node* prev;  //Popinter to the previous node in the list.
+Node* next;  //Pointer to the next node in the list.
+
+Node(int val, Node* p = nullptr, Node* n = nullptr) {  //this makes a new node with the given value and pointers.
+data = val; //sets the data to the given value.
 prev = p;
 next = n;
 }

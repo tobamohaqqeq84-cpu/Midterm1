@@ -33,26 +33,26 @@ if (!head) { //this checks if the list is empty.(if this list is empty)
 head = tail = newNode; // the new nde becomes both head an tail 
 return; //this is the return statement that ends the function.(done)
 }
-Node* temp = head;
-for (int i = 0; i < position && temp; ++i)
-temp = temp->next;
-if (!temp) {
-cout << "Position exceeds list size. Node not inserted.\n";
-delete newNode;
+Node* temp = head; // start from the head of the list.(first node)
+for (int i = 0; i < position && temp; ++i) ///this is a for loop that goes through the list until it reaches the given position.
+temp = temp->next; //this moves the pointer to the next node in the list each time. 
+if (!temp) { // this checks if the position is greater than the size of the list, if it went too far.
+cout << "Position exceeds list size. Node not inserted.\n"; // prints an error message to the user.
+delete newNode; //this deletes the new node that was created, so no memory is leaked.
 return;
 }
-newNode->next = temp->next;
-newNode->prev = temp;
-if (temp->next)
-temp->next->prev = newNode;
+newNode->next = temp->next; //this links the new node to the next node in the list.
+newNode->prev = temp; //this connects the new node to the previous node in the list.
+if (temp->next)  //this checks if thr temp is not the last node in the list.
+temp->next->prev = newNode; //fix the previous pointer of the next node.
 else
-tail = newNode;
-temp->next = newNode;
+tail = newNode; //if the temp is the last node in the list, the new node becomes the tail.
+temp->next = newNode; //this links the previous node to the new node.
 }
-void delete_val(int value) {
-if (!head) return;
-Node* temp = head;
-while (temp && temp->data != value)
+void delete_val(int value) { // this function deletes the first node with the given value.
+if (!head) return; //this checks if the list is empty and skips the rest of the function if it is.
+Node* temp = head; //start from the head of the list.
+while (temp && temp->data != value) //this is a while loop that goes through the list until it finds the node with the given value.
 temp = temp->next;
 if (!temp) return;
 if (temp->prev)

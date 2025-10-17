@@ -15,23 +15,23 @@ Node* next;  //Pointer to the next node in the list.
 
 Node(int val, Node* p = nullptr, Node* n = nullptr) {  //this makes a new node with the given value and pointers.
 data = val; //sets the data to the given value.
-prev = p;
-next = n;
+prev = p;   //link the previous node to the given node.
+next = n;  //link the next node to the given node.
 }
 };
-Node* head;
-Node* tail;
+Node* head;  // a pointer to the first node in the list.
+Node* tail;  // a pointer to the last node in the list (so we can add to the end of the list quickly).
 public:
-DoublyLinkedList() { head = nullptr; tail = nullptr; }
-void insert_after(int value, int position) {
-if (position < 0) {
-cout << "Position must be >= 0." << endl;
-return;
+DoublyLinkedList() { head = nullptr; tail = nullptr; }// this is the constructor for the class., empty head/tail
+void insert_after(int value, int position) { //this function adds a new node with the given value after the given position.(0 =first)
+if (position < 0) { //this is like a guard against the negative numbers.
+cout << "Position must be >= 0." << endl; // the reports invalid input to the user.
+return; //this is the return statement that ends the function.
 }
-Node* newNode = new Node(value);
-if (!head) {
-head = tail = newNode;
-return;
+Node* newNode = new Node(value); //this creates a new node with the given value.
+if (!head) { //this checks if the list is empty.(if this list is empty)
+head = tail = newNode; // the new nde becomes both head an tail 
+return; //this is the return statement that ends the function.(done)
 }
 Node* temp = head;
 for (int i = 0; i < position && temp; ++i)

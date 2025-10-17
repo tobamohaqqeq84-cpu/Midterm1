@@ -76,29 +76,29 @@ pop_front(); //use the pop_front function. (this calls the pop front function)
 return;
 }
 Node* temp = head; //start from the head of the list.
-for (int i = 1; i < pos; i++){
-if (!temp) {
-cout << "Position doesn't exist." << endl;
+for (int i = 1; i < pos; i++){ //this is a for loop that goes through the list until it reaches the given position.(right position)
+if (!temp) { // if we reach the end before we reach the position.
+cout << "Position doesn't exist." << endl; // print an error message to the user.
 return;
 }
-else
-temp = temp->next;
+else // if we reach the position.
+temp = temp->next; // move the pointer to the next node in the list.
 }
-if (!temp) {
-cout << "Position doesn't exist." << endl;
+if (!temp) { //if the position is greater than the size of the list.(was not found)
+cout << "Position doesn't exist." << endl; // print an error message to the user.
 return;
 }
-if (!temp->next) {
-pop_back();
+if (!temp->next) { // if the position is the last node in the list.
+pop_back(); //calls the pop_back function.
 return;
 }
-Node* tempPrev = temp->prev;
-tempPrev->next = temp->next;
-temp->next->prev = tempPrev;
-delete temp;
+Node* tempPrev = temp->prev; //saves the previous node before deleting the temp.
+tempPrev->next = temp->next; //skips the temp in the forward direction.
+temp->next->prev = tempPrev; //skips the temp in the backward direction.
+delete temp; //deletes the temp node.
 }
-void push_back(int v) {
-Node* newNode = new Node(v);
+void push_back(int v) {  //this adds a new node with the given value to the end of the list.
+Node* newNode = new Node(v); //creates a new node with the given value.
 if (!tail)
 head = tail = newNode;
 else {
@@ -178,6 +178,21 @@ cout << endl;
 }
 };
 int main() {
+    DoublyLinkedList list; // create a new list.
+
+  list.push_back(10);
+  list.push_back(20);
+  list.push_back(30);
+  list.push_back(40);
+  list.push_back(50);
+
+  cout << "original list: ";
+  list.print();
+
+  cout << "Reverse list: ";
+  list.print_reverse();
+  list.every_other_elements();
+  
 cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid
 compiler warning
 return 0;

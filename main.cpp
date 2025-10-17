@@ -124,28 +124,29 @@ return;
 }
 Node * temp = head; // and this will save the head node before deleting it.
 if (head->next) {
-head = head->next; // this one 
-head->prev = nullptr;
+head = head->next; // this one moves the head to the next node in the list.
+head->prev = nullptr; // this one sets the previous pointer of the new head to null.
 }
 else
-head = tail = nullptr;
-delete temp;
+head = tail = nullptr; //and this one sets both head and tail to null if the list is empty.
+delete temp; // this one deletes the temp node.
+
 }
 void pop_back() {
-if (!tail) {
-cout << "List is empty." << endl;
+if (!tail) {  //This checks if the list is empty.
+cout << "List is empty." << endl; //so if the list is empty, it will print an error message to the user.
 return;
 }
-Node * temp = tail;
+Node * temp = tail; // and this will save the tail node before deleting it.
 if (tail->prev) {
-tail = tail->prev;
-tail->next = nullptr;
+tail = tail->prev; // this one moves the tail to the previous node in the list.
+tail->next = nullptr; // this one sets the next pointer of the new tail to null.
 }
 else
-head = tail = nullptr;
+head = tail = nullptr; //and this one sets both head and tail to null if the list is empty.
 delete temp;
 }
-void every_other_element(){
+void every_other_element(){ //this function prints every other element in the list.
   Node* current = head;
   int index = 1; // start from 1
   if (!current) {
@@ -157,39 +158,39 @@ void every_other_element(){
     if (index % 2 != 0) { // if the index is even
       cout << current->data << " ";
     }
-    current = current->next;
+    current = current->next; // move to the next node
     index++;
   }
   cout << endl;
 }
-~DoublyLinkedList() {
+~DoublyLinkedList() { //this is the destructor for the class.
 while (head) {
-Node* temp = head;
+Node* temp = head; //save the head node before deleting it.
 head = head->next;
 delete temp;
 }
 }
 void print() {
-Node* current = head;
+Node* current = head; //start from the head of the list.
 if (!current) {
-cout << "List is empty." << endl;
+cout << "List is empty." << endl; //if the list is empty, it will print an error message to the user.
 return;
 }
 while (current) {
-cout << current->data << " ";
+cout << current->data << " "; //print the data in the current node.
 current = current->next;
 }
-cout << endl;
+cout << endl; //print a new line at the end of the list.
 }
-void print_reverse() {
-Node* current = tail;
+void print_reverse() { //this function prints the list in reverse order.
+Node* current = tail; //start from the tail of the list.  
 if (!current) {
-cout << "List is empty." << endl;
+cout << "List is empty." << endl; //if the list is empty, it will print an error message to the user.
 return;
 }
 while (current) {
-cout << current->data << " ";
-current = current->prev;
+cout << current->data << " "; //print the data in the current node.
+current = current->prev;  //move to the previous node in the list.
 }
 cout << endl;
 }
@@ -197,21 +198,23 @@ cout << endl;
 int main() {
     DoublyLinkedList list; // create a new list.
 
-  list.push_back(10);
-  list.push_back(20);
+  list.push_back(10);   // add some elements to the list.
+  list.push_back(20); 
   list.push_back(30);
   list.push_back(40);
   list.push_back(50);
 
-  cout << "original list: ";
+  cout << "original list: "; // print the list.
   list.print();
 
-  cout << "Reverse list: ";
+  cout << "Reverse list: "; // print the list in reverse order.
   list.print_reverse();
 
-  list.every_other_element();
+  list.every_other_element(); // print every other element in the list.
   
 cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS; // dummy statement to avoid
 //compiler warning
 return 0;
 }
+//The END of the program. 
+//This midterm was stresfull but i did my best. :)
